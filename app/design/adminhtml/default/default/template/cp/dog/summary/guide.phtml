@@ -1,0 +1,40 @@
+<div class="content-header">
+    <?php
+    $this->_removeButton('save');
+    $this->_removeButton('reset');
+ #   $imageSrc = Mage::getDesign()->getSkinUrl("cp/images/watchdog-75.gif");
+    echo '<h3 class="icon-head head-empty watchdog">'.Mage::helper("dog")->__('WatchDog Summary Emails') . '</h3>'; 
+    ?>
+    <p class="form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+</div>
+
+<table id="cp-summary-guide" class="center">
+    <tr>
+      <!--  <td>
+            <div class="guide-container">
+                <h1 class="dogheader black-header">Learn About Summary Emails</h1>
+                <p>WatchDog provides an amazing feature which allows you to easily see the highlights of your store on a daily basis. Click here to learn more</p>
+                <p><a href="#">Click Here >>></a></p>
+            </div>
+        </td>        -->
+        <?php
+        $imageSrc = Mage::getDesign()->getSkinUrl("cp/images/watchdog-stopwatch-75.jpg");
+        $imageSrc = str_replace("http:", "", $imageSrc);
+        $imageSrc = str_replace("https:", "", $imageSrc);
+        ?>
+        <td>
+            <div class="guide-container">
+                <h1 class="dogheader orange-header">View Existing Daily Summary Emails</h1>
+                <p><img src="<?php echo $imageSrc; ?>" class="stopwatch" style="" />View existing Daily Summary emails, and edit / delete when they are sent, what stores are included, and who receives summary emails.</p>
+                <p><a href="<?php echo $this->getUrl("*/*/list")?>">Click Here >>></a></p>
+            </div>
+        </td>
+        <td>
+            <div class="guide-container">
+                <h1 class="dogheader black-header">Create A New Daily Summary Email</h1>
+                <p><img class="stopwatch" src="<?php echo $imageSrc; ?>" style="" />Click here to create a new summary email. Our wizard will walk you through an easy setup</p><br/>
+                <p><a href="<?php echo $this->getUrl('*/*/edit')?>">Click Here >>></a></p>                
+            </div>
+        </td>        
+    </tr>
+</table>

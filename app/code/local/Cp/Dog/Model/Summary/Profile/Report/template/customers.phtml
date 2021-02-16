@@ -1,0 +1,46 @@
+<table style="width:100%;">
+    <tr>
+        <th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+            <span style="color:#ffffff;"><?php echo Mage::helper("dog")->__("Customers Report"); ?></span>
+         </th>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <?php
+                $_info = array(
+                    array(
+                        "label" => Mage::helper("dog")->__("New Customers Today (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getTotalNewCustomers() . '</b>'
+                    ),
+                    array(
+                        "label" => Mage::helper("dog")->__("Total Customers as of Today (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getTotalCustomers() . '</b>'
+                    ),                                  
+                    array(
+                        "label" => Mage::helper("dog")->__("Active Today (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getActiveToday() . '</b>'
+                    ),         
+                    array(
+                        "label" => Mage::helper("dog")->__("Active Last 7 Days (%s)", $this->getThisWeek()),
+                        "value" => '<b>' . $this->getActiveWeek() . '</b>'
+                    ),
+                    array(
+                        "label" => Mage::helper("dog")->__("Active This Month (%s)", $this->getThisMonth()),
+                        "value" => '<b>' . $this->getActiveMonth() . '</b>'
+                    ),    
+                    array(
+                        "label" => Mage::helper("dog")->__("Active This Year (%s)", $this->getThisYear()),
+                        "value" => '<b>' . $this->getActiveYear() . '</b>'
+                    ),                                                                             
+                );
+                foreach($_info as $_row)
+                {
+                    echo '<tr><td style="font-size:9pt; height:15pt;padding:2.25pt; text-align:right;"><span style="color:#3366CC;"> ' . $_row["label"] . '</span></td>';
+                    echo '<td style="width:60">&nbsp;</td><td style="font-size:9pt; text-align:center;"><span style="color:#3366CC;">' . $_row["value"] . '</span></td></tr>';
+                }
+                ?>
+            </table>            
+        </td>
+    </tr>        
+</table>

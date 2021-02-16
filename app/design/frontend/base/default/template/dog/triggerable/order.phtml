@@ -1,0 +1,32 @@
+<table style="width:100%;">
+    <tr>
+        <th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+            <span style="color:#ffffff;"><?php echo Mage::helper("dog")->__("Order Alert"); ?></span>
+         </th>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Purchased On</th>
+                        <th>Bill to Name</th> 
+                        <th>Ship to Name</th>
+                        <th>Grand Total(Base)</th>
+                        <th>State</th>
+                    </tr>
+                <?php foreach($this->getOrders() as $order): ?>
+                    <tr>
+                        <td style="text-align:center;"><?php echo $order->getIncrementId(); ?></td>
+                        <td style="text-align:center;"><?php echo $order->getCreatedAt(); ?></td>
+                        <td style="text-align:center;"><?php echo $order->getBillingName(); ?></td>
+                        <td style="text-align:center;"><?php echo $order->getShippingName(); ?></td>
+                        <td style="text-align:center;"><?php echo $order->getBaseGrandTotal(); ?></td>
+                        <td style="text-align:center;"><?php echo $order->getStatus(); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </td>
+    </tr>
+</table>
+	

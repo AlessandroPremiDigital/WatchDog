@@ -1,0 +1,31 @@
+<?php if($this->getErrors()->count() > 0): ?>
+	<table style="width:100%;">
+	    <tr>
+		<th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+		    <span style="color:#FF0033;"><?php echo Mage::helper("dog")->__("Error Alert"); ?></span>
+		 </th>
+	    </tr>
+	    <tr>
+	        <td>
+	            <table>
+	                <tr>
+                        <th>Error Level</th>
+                        <th>Time Occurred</th>
+                        <th>Detail</th>	                    
+	                </tr>
+                <?php foreach($this->getErrors() as $error): ?>
+                <?php
+                ?>
+                    <tr>
+                        <td valign="top" style="text-align:center;"><?php echo $error->getHumanReadable(); ?></td>
+                        <td valign="top" style="text-align:center;"><?php echo $error->getDate(); ?></td>
+                        <td valign="top" style="text-align:left; font-size:9px; color:#3366CC;"><?php echo nl2br($error->getMessage()); ?></td>
+                    </tr>
+                <?php endforeach; ?>	                
+	            </table>
+	        </td>
+	    </tr>
+	</table>
+<?php else: ?>
+	<span style="color:#ffffff"> <?php echo Mage::helper("dog")->__("Your site is fine. No errors!") ?></span>
+<?php endif; ?>

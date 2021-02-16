@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <cp translate="title" module="dog">
+            <children>
+				<dog translate="title" module="dog">
+                    <title>WatchDog</title>
+                    <sort_order>5</sort_order>
+					<action>adminhtml/customerparadigm_dog</action>					
+					<children translate="title" module="dog">
+						<summary>
+							<title>Daily Summary Email</title>
+							<sort_order>50</sort_order>
+							<action>adminhtml/customerparadigm_dog_summary/index</action>
+						</summary>
+						<contacts>
+							<title>Contacts</title>
+							<sort_order>80</sort_order>
+							<action>adminhtml/customerparadigm_dog/contacts</action>
+						</contacts>
+						<triggers>
+							<title>Triggers</title>
+							<sort_order>60</sort_order>
+							<action>adminhtml/customerparadigm_dog_trigger/index</action>
+						</triggers>
+						<settings>
+							<title>Settings</title>
+							<sort_order>100</sort_order>
+							<action>adminhtml/customerparadigm_dog/settings</action>
+						</settings>
+						<help>
+							<title>Help</title>
+							<sort_order>120</sort_order>
+							<action>adminhtml/customerparadigm_dog/help</action>
+						</help>						
+					</children>
+				</dog>
+			</children>
+		</cp>
+	</menu>
+	<acl>
+        <resources>
+            <admin>
+                <children>
+                    <cp>
+                        <children>
+                            <dog translate="title">
+                                <title>WatchDog</title>
+                            </dog>
+                        </children>
+                    </cp>
+                </children>
+            </admin>
+       </resources>
+  </acl>
+</config>

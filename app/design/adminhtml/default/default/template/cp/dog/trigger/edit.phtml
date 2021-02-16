@@ -1,0 +1,17 @@
+<div class="content-header">
+    <h3 class="icon-head head-products watchdog"><?php echo $this->getHeader() ?></h3>
+    <p class="content-buttons form-buttons"><?php echo $this->getChildHtml('back_button') ?>
+    <?php if($this->getTriggerId()): ?>
+        <?php echo $this->getChildHtml('delete_button') ?>
+    <?php endif; ?>
+    <?php echo $this->getChildHtml('save_button') ?>
+    </p>
+</div>
+<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="<?php echo $this->getId()?>" enctype="multipart/form-data">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <div style="display:none"></div>
+</form>
+<script type="text/javascript">
+    triggerEditForm = new varienForm('<?php echo $this->getId()?>');
+    <?php echo Mage::helper("dog")->getContactsHelp(); ?> 
+</script>

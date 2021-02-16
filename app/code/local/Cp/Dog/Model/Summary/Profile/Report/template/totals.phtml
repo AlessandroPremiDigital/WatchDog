@@ -1,0 +1,62 @@
+<table style="width:100%;">
+    <tr>
+        <th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+            <span style="color:#ffffff;"><?php echo Mage::helper("dog")->__("Daily Sales Report"); ?></span>
+         </th>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <?php
+                $_info = array(
+                    array(
+                        "label" => Mage::helper("dog")->__("Today's sales (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getTotalOrdered() . '</b>'
+                    ),
+                    array(
+                        "label" => Mage::helper("dog")->__("Total Invoiced (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getTotalInvoiced() . '</b>'
+                    ),    
+                    array(
+                        "label" => Mage::helper("dog")->__("Total Refunded or Cancelled (%s)", $this->getToday()),
+                        "value" => '<b><span style="color:#ff0000;">-' . $this->getTotalRefunded() . '</span></b>'
+                    ),    
+                    array(
+                        "label" => Mage::helper("dog")->__("Avg. Order Size (%s)", $this->getToday()),
+                        "value" => '<b>' .$this->getAvgOrderSize() . '</b>'
+                    ),    
+                    array(
+                        "label" => Mage::helper("dog")->__("# of Orders (%s)", $this->getToday()),
+                        "value" => '<b>' .$this->getTotalCountOrdered() . '</b>'
+                    ),                      
+                    array(
+                        "label" => "", "value" => ""
+                    ),              
+                    array(
+                        "label" => Mage::helper("dog")->__("Last 7 Days (%s)", $this->getThisWeek()),
+                        "value" => '<b>' . $this->getWtdOrdered() . '</b>'
+                    ),
+                    array(
+                        "label" => Mage::helper("dog")->__("This months's sales (%s)", $this->getThisMonth()),
+                        "value" => '<b>' . $this->getMtdOrdered() . '</b>'
+                    ),
+                    array(
+                        "label" => Mage::helper("dog")->__("This year's sales (%s)", $this->getThisYear()),
+                        "value" => '<b>' . $this->getYtdOrdered() . '</b>'
+                    ), 
+                     array(
+                        "label" => Mage::helper("dog")->__("Lifetime Sales"),
+                        "value" => '<b>' . $this->getLifetimeOrdered() . '</b>'
+                    )                                   
+                );
+                foreach($_info as $_row)
+                {
+                    echo '<tr><td style="font-size:9pt; height:15pt;padding:2.25pt; text-align:right;"><span style="color:#3366CC;"> ' . $_row["label"] . '</span></td>';
+                    echo '<td style="width:60">&nbsp;</td><td style="font-size:9pt; text-align:center;"><span style="color:#3366CC;">' . $_row["value"] . '</span></td></tr>';
+                }
+                ?>
+            </table>
+        </td>
+    </tr>
+        
+</table>

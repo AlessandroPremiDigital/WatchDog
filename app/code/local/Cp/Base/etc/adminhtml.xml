@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <cp translate="title" module="cp_base">
+            <title>CustomerParadigm</title>
+            <class>cp</class>
+            <sort_order>55</sort_order>
+            <children>
+                <magento translate="title" module="cp_base">
+                    <title>Magento Certified Developers</title>
+                    <sort_order>10</sort_order>
+					<action>adminhtml/customerparadigm_magento</action>
+				</magento>
+			</children>
+		</cp>
+	</menu>
+	<acl>
+        <resources>
+            <admin>
+                <children>
+                    <cp translate="title" module="cp_base">
+                        <title>Customer Paradigm</title>
+                        <sort_order>100</sort_order>
+                        <children>		
+                            <magento translate="title">
+                                <title>Base</title>
+                            </magento>
+                        </children>
+                    </cp>
+                </children>
+            </admin>
+       </resources>
+  </acl>
+</config>

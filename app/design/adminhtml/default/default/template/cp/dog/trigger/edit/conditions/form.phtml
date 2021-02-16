@@ -1,0 +1,49 @@
+<?php
+$_steps = array(
+ 1 => array(
+    "title" => "Trigger Type",
+    "content" => $this->getChildHtml("template_types")
+ ),
+ 2 => array(
+    "title" => "Trigger Conditions",
+    "buttons" => array(
+        '<button class="back" onclick="trigger.state(1, {}); return false;"><span><span>Go back a step</span></span></button>'
+    )
+ )
+);
+foreach($_steps as $_i => &$_s)
+{
+    if ($_i == $this->getActiveStep())
+    {
+       $_s["active"] = true; 
+    }
+}
+?>
+
+<?php foreach($_steps as $_number => $_details): ?>
+<div id="step_<?php echo $_number; ?>" class="trigger entry-edit step <?php if (isset($_details["active"])):?>active<?php else: ?>off <?php endif; ?>">
+    <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">
+        <span class="step"><?php echo $_number; ?></span>
+        <?php echo Mage::helper("dog")->__($_details["title"])?>
+    </h4>
+    <div class="form-buttons"><?php if (isset($_details["buttons"])):?>
+        <?php foreach ($_details["buttons"] as $_button): ?>
+           <?php echo $_button; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    </div>
+</div>
+    <div class="fieldset " id="meta_info">
+        <div class="hor-scroll"><div id="content_<?php echo $_number;?>"><?php if (isset($_details["content"])) echo $_details["content"]; ?></div></div>
+    </div>
+</div>
+<?php endforeach; ?>
+<script type="text/javascript">
+    _(document).ready(function(){
+        trigger           = new DogTrigger();
+        trigger.id        = <?php echo (!$this->isNew() ? $this->getTriggerId() : 0)?>;
+        trigger.updateUrl = "<?php echo $this->getUrl("*/*/editajax")?>";
+        trigger.state(<?php echo $this->getActiveStep()?>, <?php echo $this->getActiveStepJson()?>);
+    })
+</script>

@@ -1,0 +1,11 @@
+#nav li.cp.parent a span
+{
+	background: url("./cp_mini.png") left top no-repeat;
+	padding-left:30px;
+}
+
+#nav li.cp.parent ul a span
+{
+	background: none;
+	padding-left:15px;
+}

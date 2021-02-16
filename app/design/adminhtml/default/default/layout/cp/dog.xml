@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<layout>
+	<dog>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>cp/dog.css</name></action>
+			<action method="addItem"><type>skin_js</type><name>cp/jquery.js</name></action>
+		</reference>
+	</dog>
+	<adminhtml_customerparadigm_dog_settings>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="dog/adminhtml_settings_edit" name="dog.settings" as="dog.settings" />
+		</reference>
+	</adminhtml_customerparadigm_dog_settings>
+	<adminhtml_customerparadigm_dog_help>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="page/html" name="dog.help" as="dog.help" template="cp/dog/help.phtml" />
+		</reference>
+	</adminhtml_customerparadigm_dog_help>	
+	<adminhtml_customerparadigm_dog_contacts>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="dog/adminhtml_contacts_edit" name="dog.contacts" as="dog.contacts">
+				
+			</block>
+		</reference>
+	</adminhtml_customerparadigm_dog_contacts>
+	<adminhtml_customerparadigm_dog_trigger_list>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="dog/adminhtml_trigger_grid_container" name="dog.triggers" as="dog.triggers">
+				
+			</block>
+		</reference>
+	</adminhtml_customerparadigm_dog_trigger_list>
+	<adminhtml_customerparadigm_dog_trigger_index>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="adminhtml/widget_form_container" name="dog.trigger.helper" as = "dog.trigger.helper" template="cp/dog/trigger/guide.phtml">
+			</block>
+		</reference>
+	</adminhtml_customerparadigm_dog_trigger_index>	
+	<adminhtml_customerparadigm_dog_summary_index>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="adminhtml/widget_form_container" name="dog.summary.helper" as = "dog.summary.helper" template="cp/dog/summary/guide.phtml">
+			</block>
+		</reference>
+	</adminhtml_customerparadigm_dog_summary_index>
+	<adminhtml_customerparadigm_dog_summary_list>
+		<update handle="dog"/>
+		<reference name="content">
+			<block type="dog/adminhtml_summary_profile_list" name="dog.summary.profile.list" />
+		</reference>
+	</adminhtml_customerparadigm_dog_summary_list>		
+	<adminhtml_customerparadigm_dog_summary_edit>
+		<update handle="dog"/>
+		<update handle="editor"/>
+		<reference name="left">
+			<block type="dog/adminhtml_summary_profile_edit_tabs" name="dog.summary.profile.tabs" as = "dog.summary.profile.tabs" >
+			</block>
+		</reference>
+		<reference name="content">
+			<block type="dog/adminhtml_summary_profile_edit" name="dog.summary.profile.edit" />
+		</reference>
+	</adminhtml_customerparadigm_dog_summary_edit>	
+	<adminhtml_customerparadigm_dog_trigger_edit>
+		<update handle="dog"/>
+		<update handle="editor"/>
+		<reference name="head">
+			<action method="addItem"><type>skin_js</type><name>cp/DogTrigger.js</name></action>
+		</reference>
+		<reference name="left">
+			<block type="dog/adminhtml_trigger_edit_tabs" name="dog.trigger.tabs" as = "dog.trigger.tabs" >
+			</block>
+		</reference>
+		<reference name="content">
+			<block type="dog/adminhtml_trigger_edit" name="dog.trigger.edit" />
+		</reference>
+	</adminhtml_customerparadigm_dog_trigger_edit>	
+</layout>

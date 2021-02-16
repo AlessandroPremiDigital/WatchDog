@@ -1,0 +1,48 @@
+<table style="width:100%;">
+    <tr>
+        <th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+            <span style="color:#ffffff;"><?php echo Mage::helper("dog")->__("Order-Breakdown Report"); ?></span>
+         </th>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <tr>
+                    <th style="font-size:9pt;text-align:center;"><b>Order #</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Date</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Customer</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Amount</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Status</b></th>
+                </tr>
+                <?php
+                $_i = 0;
+                foreach($this->getData("orders") as $_row)
+                {
+                    echo '<tr>';
+                    $_keys = array(
+                        'increment_id',
+                        'created_at',
+                        'full_name',
+                        'base_grand_total',
+                        'status'
+                    );
+                    foreach($_keys as $_k)
+                    {
+                        $_value = $_row->getData($_k);
+                        if ($_k == "base_grand_total")
+                        {
+                            $_value = $this->_moneyFormat($_value);
+                        }
+                        echo '<td style="text-align:center;';
+                        if ($_i % 2 == 0) echo ' background-color:#E5E6E9;';
+                        echo '"><span style="color:#3366CC; font-size:9pt;text-align:center;">' . $_value . '</span></td>';
+                    }
+                    $_i++;
+                    echo '</tr>';
+                   }
+                ?>
+            </table>
+        </td>
+    </tr>
+        
+</table>

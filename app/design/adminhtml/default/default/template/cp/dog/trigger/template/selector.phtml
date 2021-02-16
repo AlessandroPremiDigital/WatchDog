@@ -1,0 +1,36 @@
+<table>
+    <?php foreach($this->getTemplateCollection() as $template): ?>
+        <?php
+        $_renderer = $this->getLayout()->createBlock($template->getRenderer());
+        
+        ?>
+        <tr>
+            <td>
+                <div class="template-option">
+                    <table>
+                        <tr>
+                            <td style="width:50px; text-align:center;">
+                                <input data-id="<?php echo $template->getId()?>" type="radio" name="template_id" class="template-select" id="template_<?php echo $template->getId()?>"/>
+                            </td>
+                            <td>
+                                <div ><?php echo $_renderer->getDescriptionHtml(); ?></div>
+                            </td>                            
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+    <?php endforeach; ?>
+</table>
+<script type="text/javascript">
+    _(document).ready(function(){
+       _(".template-select").each(function(){
+           _(this).click(function(){
+               var data         = {};
+               data.template_id = _(this).attr("data-id");
+               trigger.state(2, data);
+           })
+       }) 
+    });
+</script>

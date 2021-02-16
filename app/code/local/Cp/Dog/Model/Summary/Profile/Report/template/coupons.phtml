@@ -1,0 +1,76 @@
+<table style="width:100%;">
+    <tr>
+        <th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+            <span style="color:#ffffff;"><?php echo Mage::helper("dog")->__("Coupons Used Report"); ?></span>
+         </th>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <?php
+                $_info = array(
+                    array(
+                        "label" => Mage::helper("dog")->__("Total Coupons Used Today (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getTotalCount() . '</b>'
+                    ),
+                    array(
+                        "label" => Mage::helper("dog")->__("Total Discount Amount (%s)", $this->getToday()),
+                        "value" => '<b>' . $this->getTotalValue() . '</b>'
+                    ),                                  
+                );
+                foreach($_info as $_row)
+                {
+                    echo '<tr><td style="font-size:9pt; height:15pt;padding:2.25pt; text-align:right;"><span style="color:#3366CC;"> ' . $_row["label"] . '</span></td>';
+                    echo '<td style="width:60">&nbsp;</td><td style="font-size:9pt; text-align:center;"><span style="color:#3366CC;">' . $_row["value"] . '</span></td></tr>';
+                }
+                ?>
+            </table>            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <tr>
+                    <th style="font-size:9pt;text-align:center;"><b>Coupon Code</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Coupon Name</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Coupon Type</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b># of Uses</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Total Discount Amount</b></th>
+                </tr>
+                <?php
+                $_i = 0;
+                foreach($this->getData("coupons") as $_row)
+                {
+                    $_product = Mage::getModel("catalog/product")->load($_row->getData("product_id"));
+                    echo '<tr>';
+                    $_keys = array(
+                        'coupon_code',
+                        'coupon_rule_name',
+                        'coupon_type',
+                        'total_uses',
+                        'total_discount'
+                    );
+                    foreach($_keys as $_k)
+                    {
+                        switch($_k)
+                        {
+                            case "total_discount":
+                                $_value = $this->_moneyFormat($_row->getData($_k));
+                                break;
+                            default:
+                                $_value = $_row->getData($_k);
+                                break; 
+                        }
+                        echo '<td style="text-align:center;';
+                        if ($_i % 2 == 0) echo ' background-color:#E5E6E9;';
+                        echo '"><span style="color:#3366CC; font-size:9pt;text-align:center;">' . $_value . '</span></td>';
+                    }
+                    $_i++;
+                    echo '</tr>';
+                   }
+                ?>
+            </table>
+        </td>
+    </tr>
+        
+</table>

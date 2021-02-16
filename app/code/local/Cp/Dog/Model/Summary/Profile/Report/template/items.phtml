@@ -1,0 +1,68 @@
+<table style="width:100%;">
+    <tr>
+        <th valign="top" style="width:100%;background-color:#336699;padding:2.25pt;border-style:none;">
+            <span style="color:#ffffff;"><?php echo Mage::helper("dog")->__("Bestsellers Report"); ?></span>
+         </th>
+    </tr>
+    <tr>
+        <td>
+            <table style="width:100%;">
+                <tr>
+                    <th style="font-size:9pt;text-align:center;"><b>SKU</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Qty Ordered</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Product Price (Regular / Special)</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Total Value</b></th>
+                    <th style="font-size:9pt;text-align:center;"><b>Avg Unit Price</b></th>
+                </tr>
+                <?php
+                $_i = 0;
+                foreach($this->getData("items") as $_row)
+                {
+                    $_product = Mage::getModel("catalog/product")->load($_row->getData("product_id"));
+                    echo '<tr>';
+                    $_keys = array(
+                        'sku',
+                        'item_qty',
+                        'product_price',
+                        'item_value',
+                        'avg_price'
+                    );
+                    foreach($_keys as $_k)
+                    {
+                        switch($_k)
+                        {
+                            case "sku":
+                                $_value = $_product->getSku();
+                                break;
+                            case "product_price":
+                                $_price   = $_product->getPrice();
+                                $_special = $_product->getSpecialPrice();
+                                $_value   = $this->_moneyFormat($_price);
+                                if ($_special && strlen($_special))
+                                {
+                                    $_value .= ' / ' . $this->_moneyFormat($_special);
+                                } 
+                                break; 
+                            case "item_value":
+                                $_value = $this->_moneyFormat($_row->getData($_k));
+                                break;
+                            case "avg_price":
+                                $_value = $this->_moneyFormat( $_row->getItemValue() / $_row->getItemQty() );
+                                break;
+                            case "item_qty":
+                                $_value = $_row->getData($_k);
+                                break; 
+                        }
+                        echo '<td style="text-align:center;';
+                        if ($_i % 2 == 0) echo ' background-color:#E5E6E9;';
+                        echo '"><span style="color:#3366CC; font-size:9pt;text-align:center;">' . $_value . '</span></td>';
+                    }
+                    $_i++;
+                    echo '</tr>';
+                   }
+                ?>
+            </table>
+        </td>
+    </tr>
+        
+</table>

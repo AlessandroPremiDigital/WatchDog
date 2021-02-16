@@ -1,0 +1,77 @@
+<?php
+$_map  = $this->getFieldMap();
+$_keys = array_keys($_map);
+?> 
+<div class="content-header">
+    <?php echo $this->getHeaderHtml() ?>
+    <p class="form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('dog')->__('Manage Your WatchDog Contacts') ?></h4>
+    </div>
+    <div class="box">
+        <div class="hor-scroll">
+            <form id="contacts-form" method="POST">
+                <input type="hidden" name="form_key" value="<?php echo $this->getFormKey()?>" />
+                <table class="dynamic-grid" cellspacing="0"  cellpadding="0">
+                    <tr id="header">
+                        <th>Id</th>
+                        <?php foreach ($_map as $_k => $_l): ?>
+                            <th style="min-width:250px;"><?php echo $_l ?></th>
+                        <?php endforeach; ?>
+                        <th><?php echo $this->getChildHtml('add_button');?></th>
+                    </tr>
+                    <?php foreach ($this->getContacts() as $_contact): ?>
+                        <tr class="" data-contact-id="<?php echo $_contact->getId()?>">
+                            <td>
+                                <strong><?php echo $_contact->getId() ?></strong>
+                            </td>                        
+                            <?php foreach ($_map as $_k => $_l): ?>
+                                <td>
+                                    <input name="contacts[<?php echo $_contact->getId()?>][<?php echo $_k?>]" class="required-entry" value="<?php echo $_contact->getData($_k); ?>" />
+                                </td>
+                            <?php endforeach; ?>
+                            <td>
+                                <?php echo $this->getChildHtml('delete_button'); ?>
+                            </td>
+                        </tr>                    
+                     <?php endforeach; ?>                
+                </table>
+            </form>
+            <div style="display:none;" id="delete-template">
+                <?php echo $this->getChildHtml('delete_button'); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var c_id = 0;
+
+_('#contacts-form').on('click', '.delete', function(){
+    var id = _(this).parents('tr:first').attr("data-contact-id");
+    
+    /** Check for a new element **/ 
+    if (id.substring(0,1) != 'c')
+    {
+        _("#contacts-form").append('<input type="hidden" name="delete_contact[]" value="' + id + '" />');
+    }
+        
+    _(this).parents('tr:first').remove(); 
+});
+
+_('#add_new_option_button').click(function(){
+    var trHtml = '<tr class="" data-contact-id = "c' + c_id + '"><td></td>';
+        <?php foreach ($_map as $_k => $_l): ?>
+            trHtml += '<td><input name="contacts[c' + c_id + '][<?php echo $_k?>]" value="" />';
+        <?php endforeach; ?>
+    c_id++;
+    trHtml += '<td>' + _("#delete-template").html() + '</td>';
+    trHtml += '</tr>';
+    _('#contacts-form table').append(trHtml);
+});    
+</script>
+
+<script type="text/javascript">
+    editForm = new varienForm('contacts-form', '<?php echo $this->getValidationUrl() ?>');
+</script>
